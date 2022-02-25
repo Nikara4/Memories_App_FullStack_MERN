@@ -19,7 +19,9 @@ const Form = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(createPost(postData));
+    console.log(postData);
   };
+
   const clear = () => {};
 
   return (
@@ -80,7 +82,7 @@ const Form = () => {
           />
           <Button
             className={classes.buttonSubmit}
-            variant="container"
+            variant="contained"
             color="primary"
             size="large"
             type="submit"

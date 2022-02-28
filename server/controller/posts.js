@@ -1,9 +1,12 @@
+import express from "express";
+import mongoose from "mongoose";
+
 import PostMessage from "../models/postMessage.js";
 
 export const getPosts = async (req, res) => {
   try {
     const postMessages = await PostMessage.find();
-    console.log(postMessages);
+
     res.status(200).json(postMessages);
   } catch {
     res.status(404).json({ message: error.message });
@@ -11,12 +14,21 @@ export const getPosts = async (req, res) => {
 };
 
 export const createPost = async (res, req) => {
-  const post = req.body;
-  const newPost = new PostMessage(post);
+  const { title, message, selectedFile, creator, tags } = req.body;
+
+  const newPostMessage = new PostMessage({
+    title,
+    message,
+    selectedFile,
+    creator,
+    tags,
+  });
+
   try {
-    await newPost.save();
-    res.status(201).json(newPost);
-  } catch {
-    res.status(404).json({ message: error.message });
+    await newPostMessage.save();
+    console.log(newPostMessage);
+    res.status(201).json(newPostMessage);
+  } catch (error) {
+    res.status(409).json({ message: error.message });
   }
 };

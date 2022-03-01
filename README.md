@@ -6,6 +6,8 @@ You can access the GitHub source code here: [project_mern_memories](https://gith
 
 ### Status of application
 
-Right now I am in the middle of the course and the application needs a fix. The 500 internal server error pops up while trying to post data to the server.
+The application has been succesfully deployed and is available for access: [MERN App Memories](https://mern-prj-memories.netlify.app/)
+
+Right now I am working on implementing the functionalities from the rest of the videos (authentication, search, comments).
 
 The styling will be altered by me to suit my needs and to practice styling with JS and Material UI.

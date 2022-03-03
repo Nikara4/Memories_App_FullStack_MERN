@@ -14,10 +14,20 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import useStyles from "./styles";
 import Input from "./Input/Input";
 import Icon from "./Icon";
+import { signIn, signUp } from "../../actions/auth";
+
+const INITIAL_STATE = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+};
 
 const Auth = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
+  const [formData, setFormData] = useState(INITIAL_STATE);
   const classes = useStyles();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -25,9 +35,19 @@ const Auth = () => {
   const handleShowPassword = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
-  const handleFormSubmit = () => {};
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
 
-  const handleChange = () => {};
+    if (isSignUp) {
+      dispatch(signUp(formData, navigate));
+    } else {
+      dispatch(signIn(formData, navigate));
+    }
+  };
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const switchMode = () => {
     setIsSignUp((previsSignUp) => !previsSignUp);
@@ -70,10 +90,10 @@ const Auth = () => {
                 />
                 <Input
                   half
-                  name="secondName"
+                  name="lastName"
                   handleChange={handleChange}
                   autoFocus
-                  label="Second Name"
+                  label="Last Name"
                 />
               </>
             )}
@@ -99,6 +119,15 @@ const Auth = () => {
               />
             )}
           </Grid>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            {isSignUp ? "Sign Up" : "Sign In"}
+          </Button>
           <GoogleLogin
             clientId="1002163414452-utnnbfokmkt8sugva2malkf4kp11gitm.apps.googleusercontent.com"
             render={(renderProps) => (
@@ -118,15 +147,6 @@ const Auth = () => {
             onFailure={googleFailure}
             cookiePolicy="single_host_origin"
           />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            {isSignUp ? "Sign Up" : "Sign In"}
-          </Button>
           <Grid container justify="flex-end">
             <Grid item>
               <Button onClick={switchMode}>

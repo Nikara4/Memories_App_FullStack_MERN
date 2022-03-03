@@ -12,7 +12,7 @@ export default makeStyles((theme) => ({
     padding: "10px 50px",
   },
   heading: {
-    color: "#B31F48",
+    color: "#326D90",
     textDecoration: "none",
   },
   image: {
@@ -21,7 +21,7 @@ export default makeStyles((theme) => ({
   toolbar: {
     display: "flex",
     justifyContent: "flex-end",
-    width: "400px",
+    width: "335px",
   },
   profile: {
     display: "flex",

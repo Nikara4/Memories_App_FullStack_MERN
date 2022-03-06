@@ -1,5 +1,6 @@
 import express from "express";
 
+import { auth } from "../middleware/auth.js";
 import {
   getPosts,
   createPost,
@@ -10,8 +11,10 @@ import {
 
 const router = express.Router();
 
-router.route("/").get(getPosts).post(createPost);
-router.route("/:id").patch(updatePost).delete(deletePost);
-router.route("/:id/likePost").patch(likePost);
+router.get("/", getPosts);
+router.post("/", auth, createPost);
+router.patch("/:id", auth, updatePost);
+router.delete("/:id", auth, deletePost);
+router.patch("/:id/likePost", auth, likePost);
 
 export default router;

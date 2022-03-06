@@ -67,7 +67,7 @@ const Auth = () => {
   };
 
   const googleFailure = () => {
-    console.log("Google Sign In was unssuccesful.");
+    console.log("Google Sign In was unsuccessful.");
   };
 
   return (

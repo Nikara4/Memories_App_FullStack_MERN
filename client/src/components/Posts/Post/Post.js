@@ -48,6 +48,8 @@ const Post = ({ post, setCurrentId }) => {
     );
   };
 
+  console.log(user?.result?._id === post?.creator)
+
   return (
     <Card className={classes.card}>
       <CardMedia

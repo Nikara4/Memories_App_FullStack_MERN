@@ -8,6 +8,13 @@ const Posts = ({ setCurrentId }) => {
   const classes = useStyles();
   const posts = useSelector((state) => state.posts);
 
+  const postsReverse = posts
+  .slice(0)
+  .reverse()
+  .map(el => {
+    return el;
+  });
+
   return !posts.length ? (
     <CircularProgress />
   ) : (
@@ -17,7 +24,7 @@ const Posts = ({ setCurrentId }) => {
       alignItems="stretch"
       spacing={3}
     >
-      {posts.map((post) => (
+      {postsReverse.map((post) => (
         <Grid item key={post._id} xs={12} sm={6}>
           <Post post={post} setCurrentId={setCurrentId} />
         </Grid>

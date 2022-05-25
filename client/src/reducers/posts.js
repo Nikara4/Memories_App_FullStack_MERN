@@ -14,6 +14,7 @@ export const reducer = (posts = [], action) => {
       return [...posts, action.payload];
     case UPDATE_POST:
     case LIKE_POST:
+      console.log(posts)
       return posts.map((post) =>
         post._id === action.payload._id ? action.payload : post
       );

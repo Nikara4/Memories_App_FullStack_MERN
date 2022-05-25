@@ -13,6 +13,8 @@ const NavBar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  console.log(user)
+
   const logout = () => {
     dispatch({ type: "LOGOUT" });
     navigate("../", { replace: true });

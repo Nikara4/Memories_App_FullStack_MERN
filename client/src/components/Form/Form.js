@@ -1,10 +1,15 @@
 import { useState, useEffect } from "react";
-import { TextField, Button, Typography, Paper } from "@material-ui/core";
+import { TextField, Button, Typography } from "@mui/material";
 import FileBase from "react-file-base64";
 import { useDispatch, useSelector } from "react-redux";
 
-import { createPost, updatePost } from "../../actions/posts";
-import useStyles from "./styles";
+import { createPost, updatePost } from "../../state/actions/posts";
+import {
+  PaperForm,
+  ControlForm,
+  ButtonSubmit,
+  FileInput
+} from './styles';
 
 const Form = ({ currentId, setCurrentId }) => {
   const [postData, setPostData] = useState({
@@ -18,7 +23,6 @@ const Form = ({ currentId, setCurrentId }) => {
     currentId ? state.posts.find((post) => post._id === currentId) : null
   );
 
-  const classes = useStyles();
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("profile"));
 
@@ -51,20 +55,22 @@ const Form = ({ currentId, setCurrentId }) => {
 
   if (!user?.result?.name) {
     return (
-      <Paper className={classes.paper}>
+      <PaperForm>
         <Typography variant="h6" align="center">
           Please Sign In to create your own memories and like others' memories.
         </Typography>
-      </Paper>
+      </PaperForm>
     );
   }
 
+  console.log(postData.tags)
+
   return (
-    <Paper className={classes.paper}>
-      <form
+    <PaperForm>
+      <ControlForm
         autoComplete="off"
+        component="form"
         noValidate
-        className={`${classes.root} ${classes.form}`}
         onSubmit={handleSubmit}
       >
         <Typography variant="h6">
@@ -94,14 +100,14 @@ const Form = ({ currentId, setCurrentId }) => {
         <TextField
           name="tags"
           variant="outlined"
-          label="Tags"
+          label="Tags (separated by comma)"
           fullWidth
           value={postData.tags}
           onChange={(e) =>
-            setPostData({ ...postData, tags: e.target.value.split(",") })
+            setPostData({ ...postData, tags: e.target.value.trim().split(",") })
           }
         />
-        <div className={classes.fileInput}>
+        <FileInput>
           <FileBase
             type="File"
             multiple={false}
@@ -109,8 +115,7 @@ const Form = ({ currentId, setCurrentId }) => {
               setPostData({ ...postData, selectedFile: base64 })
             }
           />
-          <Button
-            className={classes.buttonSubmit}
+          <ButtonSubmit
             variant="contained"
             color="primary"
             size="large"
@@ -118,7 +123,7 @@ const Form = ({ currentId, setCurrentId }) => {
             fullWidth
           >
             Submit
-          </Button>
+          </ButtonSubmit>
           <Button
             variant="contained"
             color="secondary"
@@ -128,9 +133,9 @@ const Form = ({ currentId, setCurrentId }) => {
           >
             Clear
           </Button>
-        </div>
-      </form>
-    </Paper>
+        </FileInput>
+      </ControlForm>
+    </PaperForm>
   );
 };
 

@@ -1,34 +1,33 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Button, Grid, Typography, Container } from '@mui/material';
+import { useDispatch } from 'react-redux';
+import { GoogleLogin } from 'react-google-login';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+
 import {
-  Avatar,
-  Button,
-  Paper,
-  Grid,
-  Typography,
-  Container,
-} from "@material-ui/core";
-import { useDispatch } from "react-redux";
-import { GoogleLogin } from "react-google-login";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import useStyles from "./styles";
-import Input from "./Input/Input";
-import Icon from "./Icon";
-import { signIn, signUp } from "../../actions/auth";
+  PaperAuth,
+  AvatarAuth,
+  FormAuth,
+  ButtonSubmit,
+  ButtonGoogle,
+} from './styles';
+import Input from './Input/Input';
+import Icon from './Icon';
+import { signIn, signUp } from '../../state/actions/auth';
 
 const INITIAL_STATE = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  password: "",
-  confirmPassword: "",
+  firstName: '',
+  lastName: '',
+  email: '',
+  password: '',
+  confirmPassword: '',
 };
 
 const Auth = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
   const [formData, setFormData] = useState(INITIAL_STATE);
-  const classes = useStyles();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -59,105 +58,103 @@ const Auth = () => {
     const token = res?.tokenId;
 
     try {
-      dispatch({ type: "AUTH", data: { result, token } });
-      navigate("../", { replace: true });
+      dispatch({ type: 'AUTH', data: { result, token } });
+      navigate('../', { replace: true });
     } catch (error) {
       console.log(error);
     }
   };
 
   const googleFailure = () => {
-    console.log("Google Sign In was unsuccessful.");
+    alert('Google Sign In was unsuccessful. Try again later');
   };
 
   return (
-    <Container component="main" maxWidth="xs">
-      <Paper className={classes.paper} elevation={3}>
-        <Avatar className={classes.avatar}>
+    <Container component='main' maxWidth='xs'>
+      <PaperAuth elevation={3}>
+        <AvatarAuth>
           <LockOutlinedIcon />
-        </Avatar>
-        <Typography variant="h5">{isSignUp ? "Sign Up" : "Sing In"}</Typography>
-        <form className={classes.form} onSubmit={handleFormSubmit}>
+        </AvatarAuth>
+        <Typography variant='h5'>{isSignUp ? 'Sign Up' : 'Sing In'}</Typography>
+        <FormAuth component='form' onSubmit={handleFormSubmit}>
           <Grid container spacing={2}>
             {isSignUp && (
               <>
                 <Input
                   half
-                  name="firstName"
+                  name='firstName'
                   handleChange={handleChange}
                   autoFocus
-                  label="First Name"
+                  label='First Name'
                 />
                 <Input
                   half
-                  name="lastName"
+                  name='lastName'
                   handleChange={handleChange}
                   autoFocus
-                  label="Last Name"
+                  label='Last Name'
                 />
               </>
             )}
             <Input
-              name="email"
+              name='email'
               handleChange={handleChange}
-              label="Email Address"
-              type="email"
+              label='Email Address'
+              type='email'
             />
             <Input
-              name="password"
+              name='password'
               handleChange={handleChange}
-              label="Password"
-              type={showPassword ? "text" : "password"}
+              label='Password'
+              type={showPassword ? 'text' : 'password'}
               handleShowPassword={handleShowPassword}
             />
             {isSignUp && (
               <Input
-                name="confirmPassword"
+                name='confirmPassword'
                 handleChange={handleChange}
-                label="Repeat Password"
-                type={showPassword ? "text" : "password"}
+                label='Repeat Password'
+                type={showPassword ? 'text' : 'password'}
               />
             )}
           </Grid>
-          <Button
-            type="submit"
+          <ButtonSubmit
+            type='submit'
             fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
+            variant='contained'
+            color='primary'
           >
-            {isSignUp ? "Sign Up" : "Sign In"}
-          </Button>
+            {isSignUp ? 'Sign Up' : 'Sign In'}
+          </ButtonSubmit>
           <GoogleLogin
-            clientId="1002163414452-utnnbfokmkt8sugva2malkf4kp11gitm.apps.googleusercontent.com"
+            clientId='1002163414452-utnnbfokmkt8sugva2malkf4kp11gitm.apps.googleusercontent.com'
             render={(renderProps) => (
-              <Button
-                className={classes.googleButton}
-                color="primary"
+              <ButtonGoogle
+                color='primary'
                 fullWidth
                 onClick={renderProps.onClick}
                 disabled={renderProps.disabled}
                 startIcon={<Icon />}
-                variant="contained"
+                variant='contained'
               >
                 Google Sign In
-              </Button>
+              </ButtonGoogle>
             )}
             onSuccess={googleSuccess}
             onFailure={googleFailure}
-            cookiePolicy="single_host_origin"
+            cookiePolicy='single_host_origin'
           />
-          <Grid container justify="flex-end">
+          <Grid container justify='flex-end'>
             <Grid item>
               <Button onClick={switchMode}>
                 {isSignUp
-                  ? "Already have an account? Sign In"
+                  ? 'Already have an account? Sign In'
                   : "Don't have an account? Sign up"}
               </Button>
             </Grid>
           </Grid>
-        </form>
-      </Paper>
+        </FormAuth>
+      </PaperAuth>
     </Container>
   );
 };

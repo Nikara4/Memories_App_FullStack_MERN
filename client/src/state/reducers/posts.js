@@ -4,15 +4,23 @@ import {
   UPDATE_POST,
   DELETE_POST,
   LIKE_POST,
-  FETCH_SEARCH_POSTS
-} from "../constants/actionTypes";
+  FETCH_SEARCH_POSTS,
+} from '../constants/actionTypes';
 
 export const reducer = (posts = [], action) => {
   switch (action.type) {
     case FETCH_ALL_POSTS:
-      return action.payload;
+      return {
+        ...posts,
+        posts: action.payload.data,
+        currentPage: action.payload.currentPage,
+        numberOfPages: action.payload.numberOfPages,
+      };
     case FETCH_SEARCH_POSTS:
-      return action.payload;
+      return {
+        ...posts,
+        posts: action.payload
+      };
     case CREATE_POST:
       return [...posts, action.payload];
     case UPDATE_POST:

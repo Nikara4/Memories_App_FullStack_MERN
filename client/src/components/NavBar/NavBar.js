@@ -20,7 +20,10 @@ const NavBar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  console.log(user);
+  // const login = (e) => {
+  //   e.preventDefault();
+  //   navigate('../auth', { replace: true });
+  // };
 
   const logout = () => {
     dispatch({ type: 'LOGOUT' });
@@ -73,19 +76,18 @@ const NavBar = () => {
             <UserName variant='h6' style={{ fontSize: '18px' }}>
               {user.result.name}
             </UserName>
-            <Button variant='contained' color='secondary' onClick={logout}>
+            <Button
+              variant='contained'
+              className='nav--button'
+              onClick={logout}
+            >
               Logout
             </Button>
           </div>
         ) : (
-          <ButtonSignIn
-            component={Link}
-            to='/auth'
-            variant='contained'
-            style={{ backgroundColor: '#8481EC', color: 'white' }}
-          >
-            Sign in
-          </ButtonSignIn>
+          <Button variant='contained' className='nav--button'>
+            <Link  to='/auth' exact="true"> Sign in</Link>
+          </Button>
         )}
       </NavToolbar>
     </NavAppBar>

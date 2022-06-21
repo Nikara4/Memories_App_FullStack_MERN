@@ -22,6 +22,7 @@ export const PostCardMedia = styled(CardMedia)(({ theme }) => ({
 
 export const Title = styled(Typography)(({ theme }) => ({
   padding: "0 16px",
+  color: '#347363'
 }));
 
 

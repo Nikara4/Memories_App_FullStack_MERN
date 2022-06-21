@@ -5,7 +5,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 import { Posts, Form, Pagination, TagsInput } from '../';
 import { GridContainer, ButtonSearch, AppBarSearch } from './styles';
-import { getPosts, getPostsBySearch } from '../../state/actions/posts';
+import { getPostsBySearch } from '../../state/actions/posts';
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -22,10 +22,6 @@ const Home = () => {
   const navigate = useNavigate();
   const page = query.get('page') || 1;
   const searchQuery = query.get('searchQuery');
-
-  useEffect(() => {
-    dispatch(getPosts());
-  }, [currentId, dispatch]);
 
   const searchPost = (e) => {
     e.preventDefault();
@@ -106,18 +102,16 @@ const Home = () => {
 
   return (
     <Grow in>
-      <Container maxWidth='2xl'>
+      <Container maxWidth='2xl' sx={{ padding: '0 !important' }}>
         <GridContainer
-          sx={{ display: 'flex', alignItems: 'stretch', justifyContent: 'space-between' }}
           container='true'
-          justify='space-between'
           spacing={3}
           maxWidth='2xl'
         >
           <Grid item xs={12} sm={6} md={9} sx={{ maxWidth: 1300 }}>
             <Posts setCurrentId={setCurrentId} />
           </Grid>
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid item xs={12} sm={6} md={3}  sx={{marginLeft: '50px'}}>
             <AppBarSearch position='static' color='inherit'>
               <TextField
                 name='memories'
@@ -147,14 +141,14 @@ const Home = () => {
               />
               <ButtonSearch
                 onClick={searchPost}
-                color='primary'
                 variant='contained'
+                className="form--button"
               >
                 Search
               </ButtonSearch>
             </AppBarSearch>
             <Form currentId={currentId} setCurrentId={setCurrentId} />
-            <Pagination />
+            <Pagination page={page}/>
           </Grid>
         </GridContainer>
       </Container>

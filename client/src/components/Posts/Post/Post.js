@@ -1,8 +1,4 @@
-import {
-  CardContent,
-  Button,
-  Typography,
-} from '@mui/material';
+import { CardContent, Button, Typography } from '@mui/material';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import DeleteIcon from '@material-ui/icons/Delete';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
@@ -99,7 +95,7 @@ const Post = ({ post, setCurrentId }) => {
           {post.tags.map((tag) => `#${tag} `)}
         </Typography>
       </div>
-      <Title variant='h6' gutterBottom style={{ color: '#326D90' }}>
+      <Title variant='h6' gutterBottom>
         {post.title}
       </Title>
       <CardContent>
@@ -117,7 +113,7 @@ const Post = ({ post, setCurrentId }) => {
         <Button
           size='small'
           onClick={() => dispatch(likePost(post._id))}
-          style={{ color: '#8481EC' }}
+          style={{ color: '#347363', backgroundColor: '#fff' }}
           disabled={!user?.result}
         >
           <Likes />
@@ -127,7 +123,7 @@ const Post = ({ post, setCurrentId }) => {
           <Button
             size='small'
             onClick={() => dispatch(deletePost(post._id))}
-            style={{ color: '#8481EC' }}
+            style={{ color: '#347363', backgroundColor: '#fff' }}
           >
             <DeleteIcon fontSize='small' />
             Delete

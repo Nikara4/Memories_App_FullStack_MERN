@@ -4,12 +4,14 @@ import { styled } from '@mui/material/styles';
 
 export const NavAppBar = styled(AppBar)(({ theme }) => ({
   borderRadius: 15,
-  margin: "30px 0",
+  margin: "30px auto",
+  width: '99%',
   display: "flex",
   flexDirection: "row",
   justifyContent: "space-between",
   alignItems: "center",
   padding: "10px 50px",
+  backgroundColor: '#c8e1cc'
 }));
 
 export const NavToolbar = styled(Toolbar)(({ theme }) => ({
@@ -19,7 +21,7 @@ export const NavToolbar = styled(Toolbar)(({ theme }) => ({
 }));
 
 export const NavHeading = styled(Typography)(({ theme }) => ({
-  color: "#326D90",
+  color: '#347363',
   textDecoration: "none",
   [theme.breakpoints.down("sm")]: {
       fontSize: 40,

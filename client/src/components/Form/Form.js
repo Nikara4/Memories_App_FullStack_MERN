@@ -1,22 +1,17 @@
-import { useState, useEffect } from "react";
-import { TextField, Button, Typography } from "@mui/material";
-import FileBase from "react-file-base64";
-import { useDispatch, useSelector } from "react-redux";
+import { useState, useEffect } from 'react';
+import { TextField, Button, Typography } from '@mui/material';
+import FileBase from 'react-file-base64';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { createPost, updatePost } from "../../state/actions/posts";
-import {
-  PaperForm,
-  ControlForm,
-  ButtonSubmit,
-  FileInput
-} from './styles';
+import { createPost, updatePost } from '../../state/actions/posts';
+import { PaperForm, ControlForm, ButtonSubmit, FileInput } from './styles';
 
 const Form = ({ currentId, setCurrentId }) => {
   const [postData, setPostData] = useState({
-    title: "",
-    message: "",
-    tags: "",
-    selectedFile: "",
+    title: '',
+    message: '',
+    tags: '',
+    selectedFile: '',
   });
 
   const post = useSelector((state) =>
@@ -24,7 +19,7 @@ const Form = ({ currentId, setCurrentId }) => {
   );
 
   const dispatch = useDispatch();
-  const user = JSON.parse(localStorage.getItem("profile"));
+  const user = JSON.parse(localStorage.getItem('profile'));
 
   useEffect(() => {
     if (post) setPostData(post);
@@ -33,10 +28,10 @@ const Form = ({ currentId, setCurrentId }) => {
   const clear = () => {
     setCurrentId(null);
     setPostData({
-      title: "",
-      message: "",
-      tags: "",
-      selectedFile: "",
+      title: '',
+      message: '',
+      tags: '',
+      selectedFile: '',
     });
   };
 
@@ -56,40 +51,42 @@ const Form = ({ currentId, setCurrentId }) => {
   if (!user?.result?.name) {
     return (
       <PaperForm>
-        <Typography variant="h6" align="center">
+        <Typography variant='h6' align='center'>
           Please Sign In to create your own memories and like others' memories.
         </Typography>
       </PaperForm>
     );
   }
 
-  console.log(postData.tags)
+  console.log(postData.tags);
 
   return (
     <PaperForm>
       <ControlForm
-        autoComplete="off"
-        component="form"
+        autoComplete='off'
+        component='form'
         noValidate
         onSubmit={handleSubmit}
       >
-        <Typography variant="h6">
-          {currentId ? "Editing" : "Creating"} a Memory
+        <Typography variant='h6'>
+          {currentId ? 'Editing' : 'Creating'} a Memory
         </Typography>
 
         <TextField
-          name="title"
-          variant="outlined"
-          label="Title"
+          sx={{ margin: '8px 0 !important' }}
+          name='title'
+          variant='outlined'
+          label='Title'
           fullWidth
           value={postData.title}
           onChange={(e) => setPostData({ ...postData, title: e.target.value })}
         />
 
         <TextField
-          name="message"
-          variant="outlined"
-          label="Message"
+          sx={{ margin: '8px 0 !important' }}
+          name='message'
+          variant='outlined'
+          label='Message'
           fullWidth
           value={postData.message}
           onChange={(e) =>
@@ -98,36 +95,36 @@ const Form = ({ currentId, setCurrentId }) => {
         />
 
         <TextField
-          name="tags"
-          variant="outlined"
-          label="Tags (separated by comma)"
+          sx={{ margin: '8px 0 !important' }}
+          name='tags'
+          variant='outlined'
+          label='Tags (separated by comma)'
           fullWidth
           value={postData.tags}
           onChange={(e) =>
-            setPostData({ ...postData, tags: e.target.value.trim().split(",") })
+            setPostData({ ...postData, tags: e.target.value.trim().split(',') })
           }
         />
         <FileInput>
           <FileBase
-            type="File"
+            type='File'
             multiple={false}
             onDone={({ base64 }) =>
               setPostData({ ...postData, selectedFile: base64 })
             }
           />
-          <ButtonSubmit
-            variant="contained"
-            color="primary"
-            size="large"
-            type="submit"
+          <Button
+            className='form--button'
+            variant='contained'
+            type='submit'
             fullWidth
           >
             Submit
-          </ButtonSubmit>
+          </Button>
           <Button
-            variant="contained"
-            color="secondary"
-            size="small"
+            className='form--button'
+            variant='contained'
+            size='small'
             onClick={clear}
             fullWidth
           >

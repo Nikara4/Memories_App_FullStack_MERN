@@ -1,3 +1,35 @@
 body {
-    background-color: #e8f4ea
+  background-color: #e8f4ea;
+}
+
+.form--button {
+  background-color: rgb(184, 216, 190) !important;
+  padding: 4px 22px !important;
+  color: rgb(255, 255, 255) !important;
+  margin: 7px 0 !important;
+  border-radius: 4px !important;
+  transition: 0.3s !important;
+}
+
+.form--button:hover {
+  background-color: #b6a3d9 !important;
+  transform: scale(1.03);
+}
+
+.nav--button {
+  background-color: #b6a3d9 !important;
+  color: rgb(255, 255, 255) !important;
+  padding: 10px 15px !important;
+  margin: 7px 0 !important;
+  border-radius: 10px !important;
+  transition: 0.3s !important;
+}
+
+.nav--button a {
+  text-decoration: none;
+  color: rgb(255, 255, 255) !important;
+}
+
+.nav--button:hover {
+  transform: scale(1.03);
 }

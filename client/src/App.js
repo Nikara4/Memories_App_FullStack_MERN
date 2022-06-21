@@ -8,7 +8,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <Container maxWidth="2xl">
+      <Container maxWidth="2xl" sx={{paddingBottom: '24px'}}>
         <NavBar />
         <Routes>
           <Route path="/" exact="true" element={<Navigate to="/posts" />} />

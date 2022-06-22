@@ -4,7 +4,7 @@ import FileBase from 'react-file-base64';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { createPost, updatePost } from '../../state/actions/posts';
-import { PaperForm, ControlForm, ButtonSubmit, FileInput } from './styles';
+import { PaperForm, ControlForm, FileInput } from './styles';
 
 const Form = ({ currentId, setCurrentId }) => {
   const [postData, setPostData] = useState({
@@ -15,7 +15,7 @@ const Form = ({ currentId, setCurrentId }) => {
   });
 
   const post = useSelector((state) =>
-    currentId ? state.posts.find((post) => post._id === currentId) : null
+    currentId ? state.posts.posts.find((post) => post._id === currentId) : null
   );
 
   const dispatch = useDispatch();

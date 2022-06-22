@@ -86,7 +86,7 @@ const NavBar = () => {
           </div>
         ) : (
           <Button variant='contained' className='nav--button'>
-            <Link  to='/auth' exact="true"> Sign in</Link>
+            <Link to='/auth' exact="true"> Sign in</Link>
           </Button>
         )}
       </NavToolbar>

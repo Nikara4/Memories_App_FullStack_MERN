@@ -103,15 +103,11 @@ const Home = () => {
   return (
     <Grow in>
       <Container maxWidth='2xl' sx={{ padding: '0 !important' }}>
-        <GridContainer
-          container='true'
-          spacing={3}
-          maxWidth='2xl'
-        >
+        <GridContainer container='true' spacing={3} maxWidth='2xl'>
           <Grid item xs={12} sm={6} md={9} sx={{ maxWidth: 1300 }}>
             <Posts setCurrentId={setCurrentId} />
           </Grid>
-          <Grid item xs={12} sm={6} md={3}  sx={{marginLeft: '50px'}}>
+          <Grid item xs={12} sm={6} md={3} sx={{ marginLeft: '50px' }}>
             <AppBarSearch position='static' color='inherit'>
               <TextField
                 name='memories'
@@ -142,13 +138,15 @@ const Home = () => {
               <ButtonSearch
                 onClick={searchPost}
                 variant='contained'
-                className="form--button"
+                className='form--button'
               >
                 Search
               </ButtonSearch>
             </AppBarSearch>
             <Form currentId={currentId} setCurrentId={setCurrentId} />
-            <Pagination page={page}/>
+            {!searchQuery && !selectedTagsItem.length && (
+              <Pagination page={page} />
+            )}
           </Grid>
         </GridContainer>
       </Container>

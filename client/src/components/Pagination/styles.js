@@ -1,5 +1,5 @@
 import { Paper } from '@mui/material';
-import { Pagination } from '@material-ui/lab';
+import { Pagination } from '@mui/lab';
 import { styled } from '@mui/material/styles';
 
 export const PaginationComp = styled(Pagination)(({ theme }) => ({

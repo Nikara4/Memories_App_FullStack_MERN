@@ -1,8 +1,5 @@
 import { CardContent, Button, Typography } from '@mui/material';
-import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
-import DeleteIcon from '@material-ui/icons/Delete';
-import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
-import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpAltOutlined';
+import {ThumbUpAlt, Delete, MoreHoriz, ThumbUpAltOutlined} from '@mui/icons-material';
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
 
@@ -19,7 +16,7 @@ const Post = ({ post, setCurrentId }) => {
         (like) => like === (user?.result?.googleId || user?.result?._id)
       ) ? (
         <>
-          <ThumbUpAltIcon fontSize='small' />
+          <ThumbUpAlt fontSize='small' />
           &nbsp;
           {post.likes.length > 2
             ? `You and ${post.likes.length - 1} others`
@@ -74,7 +71,7 @@ const Post = ({ post, setCurrentId }) => {
             size='small'
             onClick={() => setCurrentId(post._id)}
           >
-            <MoreHorizIcon fontSize='medium' />
+            <MoreHoriz fontSize='medium' />
           </Button>
         </div>
       )}
@@ -125,7 +122,7 @@ const Post = ({ post, setCurrentId }) => {
             onClick={() => dispatch(deletePost(post._id))}
             style={{ color: '#347363', backgroundColor: '#fff' }}
           >
-            <DeleteIcon fontSize='small' />
+            <Delete fontSize='small' />
             Delete
           </Button>
         )}

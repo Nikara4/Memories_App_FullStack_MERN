@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button, Grid, Typography, Container } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { GoogleLogin } from 'react-google-login';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
 import {
   PaperAuth,

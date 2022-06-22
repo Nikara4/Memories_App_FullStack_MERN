@@ -1,3 +1,5 @@
+/* <a href="https://www.flaticon.com/free-icons/photo" title="photo icons">Photo icons created by Freepik - Flaticon</a> */
+
 import { useState, useEffect } from 'react';
 import { Button } from '@mui/material';
 import { useDispatch } from 'react-redux';
@@ -11,7 +13,6 @@ import {
   NavHeading,
   NavAvatar,
   UserName,
-  ButtonSignIn,
 } from './styles';
 
 const NavBar = () => {

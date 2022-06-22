@@ -6,8 +6,8 @@ You can access the GitHub source code here: [project_mern_memories](https://gith
 
 ### Status of application
 
-The application has been succesfully deployed and is available for access: [MERN App Memories](https://mern-prj-memories.netlify.app/)
+The application has been successfully deployed and is available for access: [MERN App Memories](https://mern-prj-memories.netlify.app/)
 
-Right now I am working on implementing the functionalities from the rest of the videos (authentication, search, comments).
+I have implemented most of the functionalities from the videos. I need to add post details and comments section. The website layout also needs to be adjusted for better responsiveness.
 
 The styling will be altered by me to suit my needs and to practice styling with JS and Material UI.

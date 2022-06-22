@@ -23,6 +23,8 @@ export const NavToolbar = styled(Toolbar)(({ theme }) => ({
 export const NavHeading = styled(Typography)(({ theme }) => ({
   color: '#347363',
   textDecoration: "none",
+  fontFamily: `'Preahvihear', sans-serif `,
+  fontSize: 52,
   [theme.breakpoints.down("sm")]: {
       fontSize: 40,
   },

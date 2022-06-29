@@ -1,8 +1,9 @@
+/* eslint-disable no-lone-blocks */
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button, Grid, Typography, Container } from '@mui/material';
+import { Grid, Typography, Container } from '@mui/material';
 import { useDispatch } from 'react-redux';
-import { GoogleLogin } from 'react-google-login';
+// import { GoogleLogin } from 'react-google-login';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
 import {
@@ -10,10 +11,10 @@ import {
   AvatarAuth,
   FormAuth,
   ButtonSubmit,
-  ButtonGoogle,
+  // ButtonGoogle,
 } from './styles';
 import Input from './Input/Input';
-import Icon from './Icon';
+// import Icon from './Icon';
 import { signIn, signUp } from '../../state/actions/auth';
 
 const INITIAL_STATE = {
@@ -48,26 +49,27 @@ const Auth = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const switchMode = () => {
-    setIsSignUp((previsSignUp) => !previsSignUp);
-    handleShowPassword(false);
-  };
+  {/* --------------------------------------------! NOT IN USE !-------------------------------------------- */}
+  // const switchMode = () => {
+  //   setIsSignUp((previsSignUp) => !previsSignUp);
+  //   handleShowPassword(false);
+  // };
 
-  const googleSuccess = async (res) => {
-    const result = res?.profileObj;
-    const token = res?.tokenId;
+  // const googleSuccess = async (res) => {
+  //   const result = res?.profileObj;
+  //   const token = res?.tokenId;
 
-    try {
-      dispatch({ type: 'AUTH', data: { result, token } });
-      navigate('../', { replace: true });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  //   try {
+  //     dispatch({ type: 'AUTH', data: { result, token } });
+  //     navigate('../', { replace: true });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
-  const googleFailure = () => {
-    alert('Google Sign In was unsuccessful. Try again later');
-  };
+  // const googleFailure = () => {
+  //   console.log('Google Sign In was unsuccessful. Try again later');
+  // };
 
   return (
     <Container component='main' maxWidth='xs'>
@@ -75,7 +77,9 @@ const Auth = () => {
         <AvatarAuth>
           <LockOutlinedIcon />
         </AvatarAuth>
-        <Typography variant='h5'>{isSignUp ? 'Sign Up' : 'Sing In'}</Typography>
+        <Typography variant='h5'>
+          {isSignUp ? 'Sign Up' : 'Admin Sing In'}
+        </Typography>
         <FormAuth component='form' onSubmit={handleFormSubmit}>
           <Grid container spacing={2}>
             {isSignUp && (
@@ -118,15 +122,21 @@ const Auth = () => {
               />
             )}
           </Grid>
-          <ButtonSubmit
-            type='submit'
-            fullWidth
-            variant='contained'
-            color='primary'
-          >
-            {isSignUp ? 'Sign Up' : 'Sign In'}
-          </ButtonSubmit>
-          <GoogleLogin
+          <Grid container>
+            <Grid item sx={{ flexGrow: '1', marginTop: '20px' }}>
+              <ButtonSubmit
+                type='submit'
+                fullWidth
+                variant='contained'
+                className='form--button'
+              >
+                {isSignUp ? 'Sign Up' : 'Sign In'}
+              </ButtonSubmit>
+            </Grid>
+          </Grid>
+
+          {/* --------------------------------------------! NOT IN USE !-------------------------------------------- */}
+          {/* <GoogleLogin
             clientId='1002163414452-utnnbfokmkt8sugva2malkf4kp11gitm.apps.googleusercontent.com'
             render={(renderProps) => (
               <ButtonGoogle
@@ -143,16 +153,14 @@ const Auth = () => {
             onSuccess={googleSuccess}
             onFailure={googleFailure}
             cookiePolicy='single_host_origin'
-          />
-          <Grid container justify='flex-end'>
-            <Grid item>
+          /> */}
+          {/*
               <Button onClick={switchMode}>
                 {isSignUp
                   ? 'Already have an account? Sign In'
                   : "Don't have an account? Sign up"}
               </Button>
-            </Grid>
-          </Grid>
+          */}
         </FormAuth>
       </PaperAuth>
     </Container>

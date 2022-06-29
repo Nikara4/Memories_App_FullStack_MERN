@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { PaginationItem } from '@mui/lab';
+import { PaginationItem } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 

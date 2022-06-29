@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { createPost, updatePost } from '../../state/actions/posts';
 import { PaperForm, ControlForm, FileInput } from './styles';
+import profile from '../../imgs/profile.jpg';
 
 const Form = ({ currentId, setCurrentId }) => {
   const [postData, setPostData] = useState({
@@ -52,7 +53,62 @@ const Form = ({ currentId, setCurrentId }) => {
     return (
       <PaperForm>
         <Typography variant='h6' align='center'>
-          Please Sign In to create your own memories and like others' memories.
+          About the creator
+        </Typography>
+        <img
+          style={{
+            margin: '15px auto',
+            '@media (maxWidth: 899px)': { height: 40 },
+            borderRadius: '50%',
+            display: 'block',
+          }}
+          src={profile}
+          alt='profile'
+          height='175'
+        />
+        <Typography
+          variant='body2'
+          color='textSecondary'
+          component='p'
+          gutterBottom
+        >
+          Hi there, my name is Alexandra. I have created this site with a
+          purpose to show all places that I have visited. This project made me
+          realize that I have actually travelled a lot. It's a sort of diary to
+          go back to whenever I need it.
+        </Typography>
+        <Typography
+          variant='body2'
+          color='textSecondary'
+          component='p'
+          gutterBottom
+        >
+          This project is based on the MERN tutorial web application called
+          "Memories" by{' '}
+          <a
+            style={{
+              color: '#8C5B64',
+            }}
+            href='https://www.youtube.com/c/JavaScriptMastery'
+          >
+            JSM Mastery.
+          </a>
+        </Typography>
+        <Typography
+          variant='body2'
+          color='textSecondary'
+          component='p'
+          gutterBottom
+        >
+          You can check the source code and my other projects{' '}
+          <a
+            style={{
+              color: '#8C5B64',
+            }}
+            href='https://github.com/Nikara4'
+          >
+            here.
+          </a>
         </Typography>
       </PaperForm>
     );

@@ -16,7 +16,7 @@ export const PostCard = styled(Card)(({ theme }) => ({
 export const PostCardMedia = styled(CardMedia)(({ theme }) => ({
   height: 0,
   paddingTop: "56.25%",
-  backgroundColor: "rgba(0, 0, 0, 0.2)",
+  backgroundColor: "rgba(0, 0, 0, 0.1)",
   backgroundBlendMode: "darken",
 }));
 

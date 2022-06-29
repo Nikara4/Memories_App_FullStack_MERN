@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://mern-prj-memories.herokuapp.com",
+  baseURL: "http://localhost:8000/",
 });
 // https://mern-prj-memories.herokuapp.com
 // http://localhost:8000/

@@ -1,4 +1,4 @@
-/* <a href="https://www.flaticon.com/free-icons/photo" title="photo icons">Photo icons created by Freepik - Flaticon</a> */
+/*<a href="https://www.flaticon.com/free-icons/trip" title="trip icons">Trip icons created by Freepik - Flaticon</a> */
 
 import { useState, useEffect } from 'react';
 import { Button } from '@mui/material';
@@ -50,7 +50,7 @@ const NavBar = () => {
     <NavAppBar position='static' color='inherit'>
       <div style={{ display: 'flex', alignItems: 'center' }}>
         <NavHeading component={Link} to='/' variant='h2' align='center'>
-          Memories
+          Trips &#38; Memories
         </NavHeading>
         <img
           style={{
@@ -87,7 +87,7 @@ const NavBar = () => {
           </div>
         ) : (
           <Button variant='contained' className='nav--button'>
-            <Link to='/auth' exact="true"> Sign in</Link>
+            <Link to='/auth' exact="true"> Admin</Link>
           </Button>
         )}
       </NavToolbar>

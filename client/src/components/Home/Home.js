@@ -104,7 +104,7 @@ const Home = () => {
     <Grow in>
       <Container maxWidth='2xl' sx={{ padding: '0 !important' }}>
         <GridContainer container='true' spacing={3} maxWidth='2xl'>
-          <Grid item xs={12} sm={6} md={9} sx={{ maxWidth: 1300 }}>
+          <Grid item xs={12} sm={6} md={9} sx={{ maxWidth: 1300, minWidth: 1300 }}>
             <Posts setCurrentId={setCurrentId} />
           </Grid>
           <Grid item xs={12} sm={6} md={3} sx={{ marginLeft: '50px' }}>

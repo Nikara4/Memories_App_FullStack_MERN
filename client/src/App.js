@@ -1,16 +1,21 @@
-import { Container } from "@material-ui/core";
+import { Container } from '@mui/material';
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Home, NavBar, Auth } from "./components";
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { Home, NavBar, Auth, PostDetails } from './components';
 
 const App = () => {
+  const user = JSON.parse(localStorage.getItem('profile'));
+
   return (
     <BrowserRouter>
-      <Container maxwidth="lg">
+      <Container maxWidth='2xl' sx={{ paddingBottom: '24px' }}>
         <NavBar />
         <Routes>
-          <Route path="/" exact="true" element={<Home />} />
-          <Route path="/auth" exact="true" element={<Auth />} />
+          <Route path='/' exact='true' element={<Navigate to='/posts' />} />
+          <Route path='/posts' exact='true' element={<Home />} />
+          <Route path='/posts/search' exact='true' element={<Home />} />
+          <Route path='/posts/:id' exact='true' element={<PostDetails />} />
+          <Route path='/auth' exact='true' element={<Auth />} />
         </Routes>
       </Container>
     </BrowserRouter>

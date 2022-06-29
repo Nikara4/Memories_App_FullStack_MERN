@@ -20,6 +20,7 @@ const TagsInput = ({ ...props }) => {
 
   useEffect(() => {
     setSelectedItem(tags);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tags]);
 
   useEffect(() => {

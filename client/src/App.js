@@ -4,8 +4,6 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Home, NavBar, Auth, PostDetails } from './components';
 
 const App = () => {
-  const user = JSON.parse(localStorage.getItem('profile'));
-
   return (
     <BrowserRouter>
       <Container maxWidth='2xl' sx={{ paddingBottom: '24px' }}>

@@ -6,8 +6,6 @@ const API = axios.create({
 // https://mern-prj-memories.herokuapp.com
 // http://localhost:8000/
 
-// https://mern-prj-memories.herokuapp.com
-
 API.interceptors.request.use((req) => {
   if (localStorage.getItem("profile")) {
     req.headers.Authorization = `Bearer ${

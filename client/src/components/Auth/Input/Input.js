@@ -1,6 +1,5 @@
-import { TextField, Grid, InputAdornment, IconButton } from "@material-ui/core";
-import Visibility from "@material-ui/icons/Visibility";
-import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import { TextField, Grid, InputAdornment, IconButton } from "@mui/material";
+import {Visibility, VisibilityOff} from "@mui/icons-material";
 
 const Input = ({
   half,

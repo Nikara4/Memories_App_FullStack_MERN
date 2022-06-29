@@ -1,26 +1,26 @@
-import { useState, useEffect } from "react";
-import { TextField, Button, Typography, Paper } from "@material-ui/core";
-import FileBase from "react-file-base64";
-import { useDispatch, useSelector } from "react-redux";
+import { useState, useEffect } from 'react';
+import { TextField, Button, Typography } from '@mui/material';
+import FileBase from 'react-file-base64';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { createPost, updatePost } from "../../actions/posts";
-import useStyles from "./styles";
+import { createPost, updatePost } from '../../state/actions/posts';
+import { PaperForm, ControlForm, FileInput } from './styles';
+import profile from '../../imgs/profile.jpg';
 
 const Form = ({ currentId, setCurrentId }) => {
   const [postData, setPostData] = useState({
-    title: "",
-    message: "",
-    tags: "",
-    selectedFile: "",
+    title: '',
+    message: '',
+    tags: '',
+    selectedFile: '',
   });
 
   const post = useSelector((state) =>
-    currentId ? state.posts.find((post) => post._id === currentId) : null
+    currentId ? state.posts.posts.find((post) => post._id === currentId) : null
   );
 
-  const classes = useStyles();
   const dispatch = useDispatch();
-  const user = JSON.parse(localStorage.getItem("profile"));
+  const user = JSON.parse(localStorage.getItem('profile'));
 
   useEffect(() => {
     if (post) setPostData(post);
@@ -29,10 +29,10 @@ const Form = ({ currentId, setCurrentId }) => {
   const clear = () => {
     setCurrentId(null);
     setPostData({
-      title: "",
-      message: "",
-      tags: "",
-      selectedFile: "",
+      title: '',
+      message: '',
+      tags: '',
+      selectedFile: '',
     });
   };
 
@@ -51,39 +51,98 @@ const Form = ({ currentId, setCurrentId }) => {
 
   if (!user?.result?.name) {
     return (
-      <Paper className={classes.paper}>
-        <Typography variant="h6" align="center">
-          Please Sign In to create your own memories and like others' memories.
+      <PaperForm>
+        <Typography variant='h6' align='center'>
+          About the creator
         </Typography>
-      </Paper>
+        <img
+          style={{
+            margin: '15px auto',
+            '@media (maxWidth: 899px)': { height: 40 },
+            borderRadius: '50%',
+            display: 'block',
+          }}
+          src={profile}
+          alt='profile'
+          height='175'
+        />
+        <Typography
+          variant='body2'
+          color='textSecondary'
+          component='p'
+          gutterBottom
+        >
+          Hi there, my name is Alexandra. I have created this site with a
+          purpose to show all places that I have visited. This project made me
+          realize that I have actually travelled a lot. It's a sort of diary to
+          go back to whenever I need it.
+        </Typography>
+        <Typography
+          variant='body2'
+          color='textSecondary'
+          component='p'
+          gutterBottom
+        >
+          This project is based on the MERN tutorial web application called
+          "Memories" by{' '}
+          <a
+            style={{
+              color: '#8C5B64',
+            }}
+            href='https://www.youtube.com/c/JavaScriptMastery'
+          >
+            JSM Mastery.
+          </a>
+        </Typography>
+        <Typography
+          variant='body2'
+          color='textSecondary'
+          component='p'
+          gutterBottom
+        >
+          You can check the source code and my other projects{' '}
+          <a
+            style={{
+              color: '#8C5B64',
+            }}
+            href='https://github.com/Nikara4'
+          >
+            here.
+          </a>
+        </Typography>
+      </PaperForm>
     );
   }
 
+  console.log(postData.tags);
+
   return (
-    <Paper className={classes.paper}>
-      <form
-        autoComplete="off"
+    <PaperForm>
+      <ControlForm
+        autoComplete='off'
+        component='form'
         noValidate
-        className={`${classes.root} ${classes.form}`}
         onSubmit={handleSubmit}
       >
-        <Typography variant="h6">
-          {currentId ? "Editing" : "Creating"} a Memory
+        <Typography variant='h6'>
+          {currentId ? 'Editing' : 'Creating'} a Memory
         </Typography>
 
         <TextField
-          name="title"
-          variant="outlined"
-          label="Title"
+          sx={{ margin: '8px 0 !important' }}
+          name='title'
+          variant='outlined'
+          label='Title'
           fullWidth
           value={postData.title}
           onChange={(e) => setPostData({ ...postData, title: e.target.value })}
         />
 
         <TextField
-          name="message"
-          variant="outlined"
-          label="Message"
+          sx={{ margin: '8px 0 !important' }}
+          name='message'
+          variant='outlined'
+          label='Message'
           fullWidth
           value={postData.message}
           onChange={(e) =>
@@ -92,45 +151,44 @@ const Form = ({ currentId, setCurrentId }) => {
         />
 
         <TextField
-          name="tags"
-          variant="outlined"
-          label="Tags"
+          sx={{ margin: '8px 0 !important' }}
+          name='tags'
+          variant='outlined'
+          label='Tags (separated by comma)'
           fullWidth
           value={postData.tags}
           onChange={(e) =>
-            setPostData({ ...postData, tags: e.target.value.split(",") })
+            setPostData({ ...postData, tags: e.target.value.trim().split(',') })
           }
         />
-        <div className={classes.fileInput}>
+        <FileInput>
           <FileBase
-            type="File"
+            type='File'
             multiple={false}
             onDone={({ base64 }) =>
               setPostData({ ...postData, selectedFile: base64 })
             }
           />
           <Button
-            className={classes.buttonSubmit}
-            variant="contained"
-            color="primary"
-            size="large"
-            type="submit"
+            className='form--button'
+            variant='contained'
+            type='submit'
             fullWidth
           >
             Submit
           </Button>
           <Button
-            variant="contained"
-            color="secondary"
-            size="small"
+            className='form--button'
+            variant='contained'
+            size='small'
             onClick={clear}
             fullWidth
           >
             Clear
           </Button>
-        </div>
-      </form>
-    </Paper>
+        </FileInput>
+      </ControlForm>
+    </PaperForm>
   );
 };
 

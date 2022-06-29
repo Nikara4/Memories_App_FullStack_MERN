@@ -1,26 +1,29 @@
-import { makeStyles } from "@material-ui/core/styles";
+import { Paper, Box, FormControl, Button } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
-export default makeStyles((theme) => ({
-  root: {
-    "& .MuiTextField-root": {
-      margin: theme.spacing(1),
-    },
+export const PaperForm = styled(Paper)(({ theme }) => ({
+  padding: theme.spacing(2),
+  borderRadius: '10px'
+}));
+
+export const ControlForm = styled(FormControl)(({ theme }) => ({
+  display: 'flex',
+  flexWrap: 'wrap',
+  justifyContent: 'center',
+  '& .MuiTextField-root': {
+    margin: theme.spacing(1),
   },
-  paper: {
-    padding: theme.spacing(2),
-  },
-  form: {
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "center",
-  },
-  fileInput: {
-    width: "97%",
-    margin: "10px 0",
-  },
-  buttonSubmit: {
-    display: "block",
-    margin: "10px 0",
-    backgroundColor: "#8481EC",
-  },
+}));
+
+export const ButtonSubmit = styled(Button)(() => ({  
+   
+  
+  
+  }));
+
+export const FileInput = styled(Box)(({ theme }) => ({
+  margin: '10px 0',
+  '& input': {
+    marginBottom: '5px',
+  }
 }));

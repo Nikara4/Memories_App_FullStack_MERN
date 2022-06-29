@@ -1,24 +1,14 @@
-import useStyles from "./styles";
-import {
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Button,
-  Typography,
-} from "@material-ui/core";
-import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
-import DeleteIcon from "@material-ui/icons/Delete";
-import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
-import ThumbUpAltOutlined from "@material-ui/icons/ThumbUpAltOutlined";
-import moment from "moment";
-import { useDispatch } from "react-redux";
-import { deletePost, likePost } from "../../../actions/posts";
+import { CardContent, Button, Typography } from '@mui/material';
+import {ThumbUpAlt, Delete, MoreHoriz, ThumbUpAltOutlined} from '@mui/icons-material';
+import moment from 'moment';
+import { useDispatch } from 'react-redux';
+
+import { PostCard, PostCardMedia, Title, PostCardActions } from './styles';
+import { deletePost, likePost } from '../../../state/actions/posts';
 
 const Post = ({ post, setCurrentId }) => {
-  const classes = useStyles();
   const dispatch = useDispatch();
-  const user = JSON.parse(localStorage.getItem("profile"));
+  const user = JSON.parse(localStorage.getItem('profile'));
 
   const Likes = () => {
     if (post.likes.length > 0) {
@@ -26,93 +16,101 @@ const Post = ({ post, setCurrentId }) => {
         (like) => like === (user?.result?.googleId || user?.result?._id)
       ) ? (
         <>
-          <ThumbUpAltIcon fontSize="small" />
+          <ThumbUpAlt fontSize='small' />
           &nbsp;
           {post.likes.length > 2
             ? `You and ${post.likes.length - 1} others`
-            : `${post.likes.length} like${post.likes.length > 1 ? "s" : ""}`}
+            : `${post.likes.length} like${post.likes.length > 1 ? 's' : ''}`}
         </>
       ) : (
         <>
-          <ThumbUpAltOutlined fontSize="small" />
-          &nbsp;{post.likes.length} {post.likes.length === 1 ? "Like" : "Likes"}
+          <ThumbUpAltOutlined fontSize='small' />
+          &nbsp;{post.likes.length} {post.likes.length === 1 ? 'Like' : 'Likes'}
         </>
       );
     }
 
     return (
       <>
-        <ThumbUpAltOutlined fontSize="small" />
+        <ThumbUpAltOutlined fontSize='small' />
         &nbsp;Like
       </>
     );
   };
 
-  console.log(user?.result?._id === post?.creator)
-
   return (
-    <Card className={classes.card}>
-      <CardMedia
-        className={classes.media}
-        image={post.selectedFile}
-        title={post.title}
-      />
+    <PostCard>
+      <PostCardMedia image={post.selectedFile} title={post.title} />
 
-      <div className={classes.overlay}>
-        <Typography variant="h6">{post.name}</Typography>
-        <Typography variant="body2">
+      <div
+        style={{
+          position: 'absolute',
+          top: '20px',
+          left: '20px',
+          color: 'white',
+        }}
+      >
+        <Typography variant='h6'>{post.name}</Typography>
+        <Typography variant='body2'>
           {moment(post.createdAt).fromNow()}
         </Typography>
       </div>
 
       {(user?.result?.googleId === post?.creator ||
         user?.result?._id === post?.creator) && (
-        <div className={classes.overlay2}>
+        <div
+          style={{
+            position: 'absolute',
+            top: '20px',
+            right: '5px',
+            color: 'white',
+          }}
+        >
           <Button
-            style={{ color: "white" }}
-            size="small"
+            style={{ color: 'white' }}
+            size='small'
             onClick={() => setCurrentId(post._id)}
           >
-            <MoreHorizIcon fontSize="medium" />
+            <MoreHoriz fontSize='medium' />
           </Button>
         </div>
       )}
 
-      <div className={classes.details}>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          margin: '20px',
+        }}
+      >
         <Typography
-          variant="body2"
+          variant='body2'
           style={{ fontSize: 12 }}
-          color="textSecondary"
-          component="p"
+          color='textSecondary'
+          component='p'
         >
           {post.tags.map((tag) => `#${tag} `)}
         </Typography>
       </div>
-      <Typography
-        className={classes.title}
-        variant="h6"
-        gutterBottom
-        style={{ color: "#326D90" }}
-      >
+      <Title variant='h6' gutterBottom>
         {post.title}
-      </Typography>
+      </Title>
       <CardContent>
         <Typography
-          className={classes.message}
-          variant="body2"
-          color="textSecondary"
-          component="p"
+          variant='body2'
+          color='textSecondary'
+          component='p'
           gutterBottom
         >
           {post.message}
         </Typography>
       </CardContent>
 
-      <CardActions className={classes.cardActions}>
+      <PostCardActions>
         <Button
-          size="small"
+          size='small'
           onClick={() => dispatch(likePost(post._id))}
-          style={{ color: "#8481EC" }}
+          style={{ color: '#347363', backgroundColor: '#fff' }}
           disabled={!user?.result}
         >
           <Likes />
@@ -120,16 +118,16 @@ const Post = ({ post, setCurrentId }) => {
         {(user?.result?.googleId === post?.creator ||
           user?.result?._id === post?.creator) && (
           <Button
-            size="small"
+            size='small'
             onClick={() => dispatch(deletePost(post._id))}
-            style={{ color: "#8481EC" }}
+            style={{ color: '#347363', backgroundColor: '#fff' }}
           >
-            <DeleteIcon fontSize="small" />
+            <Delete fontSize='small' />
             Delete
           </Button>
         )}
-      </CardActions>
-    </Card>
+      </PostCardActions>
+    </PostCard>
   );
 };
 
